@@ -5,7 +5,7 @@ Por Leandro Manzano Merlo
 ## 1.1. Procedimento de Instalação do Projeto
 
 É necessário ter o Docker e docker-compose instalados para que o projeto funcione de maneira adequada.
-As formas de instalar essas ferramentas são encontradas em no site oficial do Docker ([Docker](https://docs.docker.com/desktop/) e [docker-compose](https://docs.docker.com/compose/)).
+As formas de instalar essas ferramentas são encontradas em no site oficial do Docker ([Docker](https://docs.docker.com/desktop/){:target="_blank"} e [docker-compose](https://docs.docker.com/compose/){:target="_blank"}).
 
 ***Observação***: se a pasta raiz do projeto não se chamar **invillia_php_challange**, substitua em todos os comandos do docker invillia_php_challenge_app_1 por **sua_pasta**_app_1.Isso se deve ao motivo de que o docker-compose utiliza o nome da pasta raiz do projeto concatenado com o nome do serviço docker. É importante que o nome da pasta não tenha espaços em branco.
 
@@ -65,18 +65,18 @@ docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; ./vendor/bin
 ## 3. Acessando a documentação da API
 
 
-Acesse no navegador a seguinte url: [http://localhost:8000/api/v1/documentation](http://localhost:8000/api/v1/documentation)
+Acesse no navegador a seguinte url: [http://localhost:8000/api/v1/documentation](http://localhost:8000/api/v1/documentation){:target="_blank"}
 
 Como as rotas são todas protegidas, aparecerá um cadeado na frente das mesmas, e um botão "Authorize". Ao clicar em um deles, aparece um campo para inserção do token de autenticação. Ao inserir o token e clicar em Authorize, as rotas protegidas poderão ser acessadas normalmente.
 
-Esse token deve ser adiquirido utilizando a rota [http://localhost:8000/api/v1/auth/login](http://localhost:8000/api/v1/auth/login) que pode ser acessada diretamente dentro da documentação, ou via aplicativos como o Postman, que podem fazer requisições web. Essa rota deve receber os parametros ***email*** e ***password*** e utilizar o verbo http ***POST***, com as credenciais do usuário gerado na seção 1.1.d.
+Esse token deve ser adiquirido utilizando a rota [http://localhost:8000/api/v1/auth/login](http://localhost:8000/api/v1/auth/login){:target="_blank"} que pode ser acessada diretamente dentro da documentação, ou via aplicativos como o Postman, que podem fazer requisições web. Essa rota deve receber os parametros ***email*** e ***password*** e utilizar o verbo http ***POST***, com as credenciais do usuário gerado na seção 1.1.d.
 
 A resposta desta rota traz as informações de acesso em formato JSON, contendo o ***access_token*** (esse token que deve ser inserido no passo acima, para fazer o login), o token_type e expires_in.
 
 
 ## 4. Acessando a página principal
 
-Acesse no navegador a seguinte url: [http://localhost:8000/](http://localhost:8000/)
+Acesse no navegador a seguinte url: [http://localhost:8000/](http://localhost:8000/){:target="_blank"}
 
 Nessa página, você poderá fazer o upload dos arquivos XML para o sistema.
 Os arquivos XML de exemplo enviados encontram-se na pasta raiz do projeto.
