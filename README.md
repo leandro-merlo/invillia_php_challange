@@ -47,6 +47,11 @@ docker exec -ti invillia_php_challenge_app_1 php laravel/artisan view:cache l5-s
 
 ## 2. Rodando os Testes
 
+Copie os arquivos XML da pasta raiz do projeto para a pasta ./html/laravel/storage/app/public
+
+``` bash
+cp ./*.xml ./html/laravel/storage/app/public/
+```
 
 Rode o comando:
 
