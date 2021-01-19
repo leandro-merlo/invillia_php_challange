@@ -43,7 +43,7 @@ e. Rodar os comandos abaixo para limpar o cache e gerar arquivos da documenta√ß√
 ``` bash
 docker exec -ti invillia_php_challange_app_1 php laravel/artisan config:cache
 docker exec -ti invillia_php_challange_app_1 php laravel/artisan view:cache
-docker exec -ti invillia_php_challange_app_1 php laravel/artisan view:cache l5-swagger:generate
+docker exec -ti invillia_php_challange_app_1 php laravel/artisan l5-swagger:generate
 ```
 
 ## 2. Rodando os Testes
