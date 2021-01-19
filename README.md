@@ -17,10 +17,12 @@ docker-compose up -d
 
 b. Sobrescreva o conteúdo do arquivo html/laravel/.env pelo conteúdo do arquivo html/laravel/.env.example
 
+Exemplo: cp ./html/laravel/.env.example ./html/laravel/.env
+
 c. Rodar o comando abaixo para instalar as dependências do laravel
 
 ``` bash
-docker exec -ti invillia_php_challenge_app_1 composer install
+docker exec -ti invillia_php_challenge_app_1 bash -c "cd ./laravel; composer install"
 ```
 
 d. Rodar o comando a seguir para configurar o banco de dados e gerar o usuário padrão
@@ -58,3 +60,11 @@ docker exec -ti invillia_php_challenge_app_1 bash -c "cd ./laravel; ./vendor/bin
 
 
 Acesse no navegador a seguinte url: [http://localhost:8000/api/v1/documentation](http://localhost:8000/api/v1/documentation)
+
+
+## 4. Acessando a página principal
+
+Acesse no navegador a seguinte url: [http://localhost:8000/](http://localhost:8000/)
+
+Nessa página, você poderá fazer o upload dos arquivos XML para o sistema.
+Os arquivos XML de exemplo enviados encontram-se na pasta raiz do projeto.
