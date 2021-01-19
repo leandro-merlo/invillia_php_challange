@@ -1,0 +1,918 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Invillia PHP CHALLENGE OpenApi Documentation",
+        "description": "PHP CHALLENGE - developed by Leandro Manzano Merlo",
+        "contact": {
+            "email": "leandro.merlo@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Log in",
+                "description": "Login with user credentials",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email address of the user.",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Auth"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/auth/me": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authentication information",
+                "description": "Get authentication information",
+                "operationId": "getAuth",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout",
+                "description": "Logout and invalidate authentication token",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh authentication token",
+                "description": "Invalidate old and get new authentication token",
+                "operationId": "refreshToken",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/items": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Get list of items",
+                "description": "Returns list of all items",
+                "operationId": "getItemsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ItemsResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/items/{id}": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Find an item by id",
+                "description": "Finds an item from a given id",
+                "operationId": "findItemById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/people": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Get list of person",
+                "description": "Returns list of all person",
+                "operationId": "getPeopleList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PeopleResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/people/{id}": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Find a person by id",
+                "description": "Finds a person from a given id",
+                "operationId": "findPersonById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Person id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiporders": {
+            "get": {
+                "tags": [
+                    "Ship Orders"
+                ],
+                "summary": "Get list of Ship Orders",
+                "description": "Returns list of all Ship Orders",
+                "operationId": "getShipOrdersList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShipOrdersResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiporders/{id}": {
+            "get": {
+                "tags": [
+                    "Ship Orders"
+                ],
+                "summary": "Find a Ship Order by id",
+                "description": "Finds a Ship Order from a given id",
+                "operationId": "findShipOrderById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ship Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShipOrder"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiporders/{id}/shipto": {
+            "get": {
+                "tags": [
+                    "Ship Orders"
+                ],
+                "summary": "Find a Ship To (Destination) by Ship Order id",
+                "description": "Finds a Ship To (Destination) from a given Ship Order id",
+                "operationId": "findShipToByShipOrderId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ship Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShipTo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiporders/{id}/items": {
+            "get": {
+                "tags": [
+                    "Ship Orders"
+                ],
+                "summary": "Find Items by Ship Order id",
+                "description": "Finds a Items from a given Ship Order id",
+                "operationId": "findItemsByShipOrderId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ship Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiptos": {
+            "get": {
+                "tags": [
+                    "Ship To (Destination)"
+                ],
+                "summary": "Get list of Ship To (Destinations)",
+                "description": "Returns list of all Ship To (Destinations)",
+                "operationId": "getShipTosList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShipTosResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/shiptos/{id}": {
+            "get": {
+                "tags": [
+                    "Ship To (Destination)"
+                ],
+                "summary": "Find a destination by id",
+                "description": "Finds a destination from a given id",
+                "operationId": "findShipToById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ship To id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShipTo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Item": {
+                "title": "Item",
+                "description": "Item model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Item title",
+                        "type": "string",
+                        "example": "Title"
+                    },
+                    "quantity": {
+                        "title": "quantity",
+                        "description": "Quantity",
+                        "type": "integer",
+                        "format": "int",
+                        "example": 20
+                    },
+                    "price": {
+                        "title": "id",
+                        "description": "ID",
+                        "type": "number",
+                        "format": "float",
+                        "example": 754.34
+                    },
+                    "ship_order_id": {
+                        "title": "ship_order_id",
+                        "description": "Ship Order Id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Item"
+                }
+            },
+            "Person": {
+                "title": "Person",
+                "description": "Person model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the person",
+                        "type": "string",
+                        "example": "Jhon"
+                    },
+                    "phones": {
+                        "title": "Phones",
+                        "description": "Person related phones",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "items": {}
+                        },
+                        "example": "[1234567,8888888]"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Person"
+                }
+            },
+            "ShipOrder": {
+                "title": "ShipOrder",
+                "description": "ShipOrder model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "person_id": {
+                        "title": "person_id",
+                        "description": "Person Id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "ship_to_id": {
+                        "title": "ship_to_id",
+                        "description": "Ship To Id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ShipOrder"
+                }
+            },
+            "ShipTo": {
+                "title": "ShipTo",
+                "description": "Ship To (Destination) model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Ship to name",
+                        "type": "string",
+                        "example": "Name"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "Ship to address",
+                        "type": "string",
+                        "example": "Address"
+                    },
+                    "city": {
+                        "title": "ciry",
+                        "description": "Ship to city",
+                        "type": "string",
+                        "example": "City"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "Ship to country",
+                        "type": "string",
+                        "example": "Country"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ShipTo"
+                }
+            },
+            "Auth": {
+                "title": "Auth",
+                "description": "Authentication Response",
+                "properties": {
+                    "access_token": {
+                        "title": "access_token",
+                        "description": "Access Token",
+                        "type": "string",
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9pbnZpbGxpYS5uZXRcL2FwaVwvdjFcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEwOTg4NzcxLCJleHAiOjE2MTA5OTIzNzEsIm5iZiI6MTYxMDk4ODc3MSwianRpIjoiRmttOGJqUjU4NHhGWWZ3SSIsInN1YiI6MSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.vHxamSZo8hY3dmubYlpXM5Wf04eNqdXYQ6uzBmu4TVQ"
+                    },
+                    "token_type": {
+                        "title": "token_type",
+                        "description": "Token type",
+                        "type": "string",
+                        "example": "bearer"
+                    },
+                    "expires_in": {
+                        "title": "expires_in",
+                        "description": "Expiration time",
+                        "type": "integer",
+                        "format": "int",
+                        "example": 3600
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Auth"
+                }
+            },
+            "ItemsResource": {
+                "title": "ItemsResource",
+                "description": "Items resource",
+                "properties": {
+                    "data": {
+                        "title": "List of items",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Item"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ItemsResource"
+                }
+            },
+            "PeopleResource": {
+                "title": "PeopleResource",
+                "description": "People resource",
+                "properties": {
+                    "data": {
+                        "title": "List of persons",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Person"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PeopleResource"
+                }
+            },
+            "ShipOrdersResource": {
+                "title": "ShipOrdersResource",
+                "description": "ShipOrders resource",
+                "properties": {
+                    "data": {
+                        "title": "List of Ship Ordersw",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ShipOrder"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ShipOrdersResource"
+                }
+            },
+            "ShipTosResource": {
+                "title": "ShipTosResource",
+                "description": "Ship To (Destination) resource",
+                "properties": {
+                    "data": {
+                        "title": "List of Ship To (Destination) ",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ShipTo"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ShipTosResource"
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "API Endpoints of Authentication"
+        },
+        {
+            "name": "Items",
+            "description": "API Endpoints of Items"
+        },
+        {
+            "name": "People",
+            "description": "API Endpoints of People"
+        },
+        {
+            "name": "Ship Orders",
+            "description": "API Endpoints of Ship Orders"
+        },
+        {
+            "name": "Ship To (Destination)",
+            "description": "API Endpoints of Ship To"
+        }
+    ]
+}
