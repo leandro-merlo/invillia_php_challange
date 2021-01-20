@@ -11,6 +11,13 @@ As formas de instalar essas ferramentas são encontradas em no site oficial do D
 
 Para realizar os procedimentos, abra um terminal (no Windows, se estiver usando o prompt, substituir o comando *cp* por *copy* e as barras dos caminhos de arquivo devem ser invertidas). Dentro do terminal, acessar a pasta raiz do projeto
 
+``` bash
+git clone https://github.com/leandro-merlo/invillia_php_challange.git
+cd invillia_php_challange
+```
+
+Alterar dentro do arquivo docker-compose.yml o conteúdo das variáveis services->app->build->args->user e services->app->build->args->uid para o nome do usuário do computador e seu id, respectivamente. Isso é necessário para criar as pastas com as permissões corretas dentro do docker.
+
 a. Despois de instalados o docker e docker-compose, rodar o seguinte comando para subir e construir as imagens do docker
 
 ``` bash
@@ -25,6 +32,7 @@ c. Rodar o comando abaixo para instalar as dependências do laravel
 
 ``` bash
 docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; composer install"
+docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; npm install"
 docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; npm run prod"
 ```
 
