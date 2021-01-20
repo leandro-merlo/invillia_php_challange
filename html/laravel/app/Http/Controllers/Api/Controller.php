@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="Invillia PHP CHALLENGE OpenApi Documentation",
- *      description="PHP CHALLENGE - developed by Leandro Manzano Merlo",
+ *      title="Invillia PHP CHALLANGE OpenApi Documentation",
+ *      description="PHP CHALLANGE - developed by Leandro Manzano Merlo",
  *      @OA\Contact(
  *          email="leandro.merlo@gmail.com"
  *      ),

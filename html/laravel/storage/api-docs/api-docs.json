@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Invillia PHP CHALLENGE OpenApi Documentation",
-        "description": "PHP CHALLENGE - developed by Leandro Manzano Merlo",
+        "title": "Invillia PHP CHALLANGE OpenApi Documentation",
+        "description": "PHP CHALLANGE - developed by Leandro Manzano Merlo",
         "contact": {
             "email": "leandro.merlo@gmail.com"
         },

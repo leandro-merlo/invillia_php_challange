@@ -1,4 +1,4 @@
-# 1. Invillia PHP Challenge
+# 1. Invillia PHP Challange
 
 Por Leandro Manzano Merlo
 
@@ -7,14 +7,15 @@ Por Leandro Manzano Merlo
 É necessário ter o Docker e docker-compose instalados para que o projeto funcione de maneira adequada.
 As formas de instalar essas ferramentas são encontradas em no site oficial do Docker ([Docker](https://docs.docker.com/desktop/) e [docker-compose](https://docs.docker.com/compose/)).
 
-***Observação***: se a pasta raiz do projeto não se chamar **invillia_php_challange**, substitua em todos os comandos do docker invillia_php_challenge_app_1 por **sua_pasta**_app_1.Isso se deve ao motivo de que o docker-compose utiliza o nome da pasta raiz do projeto concatenado com o nome do serviço docker. É importante que o nome da pasta não tenha espaços em branco.
+***Observação***: se a pasta raiz do projeto não se chamar **invillia_php_challange**, substitua em todos os comandos do docker invillia_php_challange_app_1 por **sua_pasta**_app_1.Isso se deve ao motivo de que o docker-compose utiliza o nome da pasta raiz do projeto concatenado com o nome do serviço docker. É importante que o nome da pasta não tenha espaços em branco.
+
+Para realizar os procedimentos, abra um terminal (no Windows, se estiver usando o prompt, substituir o comando *cp* por *copy* e as barras dos caminhos de arquivo devem ser invertidas). Dentro do terminal, acessar a pasta raiz do projeto
 
 a. Despois de instalados o docker e docker-compose, rodar o seguinte comando para subir e construir as imagens do docker
 
 ``` bash
 docker-compose up -d --build
 ```
-
 
 b. Sobrescreva o conteúdo do arquivo html/laravel/.env pelo conteúdo do arquivo html/laravel/.env.example
 
@@ -24,6 +25,7 @@ c. Rodar o comando abaixo para instalar as dependências do laravel
 
 ``` bash
 docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; composer install"
+docker exec -ti invillia_php_challange_app_1 bash -c "cd ./laravel; npm run prod"
 ```
 
 d. Rodar o comando a seguir para configurar o banco de dados e gerar o usuário padrão

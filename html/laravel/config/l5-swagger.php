@@ -8,7 +8,7 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'title' => 'PHP CHALLENGE Documentation',
+        'title' => 'PHP CHALLANGE Documentation',
     ],
 
     'routes' => [
